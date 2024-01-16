@@ -27,9 +27,34 @@ def func96():
     
 #Question 97:
 #You are given an integer, N. Your task is to print an alphabet rangoli of size N. (Rangoli is a form of Indian folk art based on creation of patterns.)
+import string
 def func97():
-    pass
-
+    alphabet = string.ascii_lowercase
+    ans = []
+    n = int(input())
+    lines = 2 * n - 1
+    width = 4 * n - 3
+    middle = int(width / 2)
+    for i in range(int(lines/2)+ 1):
+        line = ['-'] * width
+        idx = n - 1 - i
+        line[middle] = alphabet[idx]
+        j = middle - 2
+        k = middle + 2
+        idx += 1
+        while idx < n:
+            line[j] = line[k] = alphabet[idx]
+            j -= 2
+            k += 2
+            idx += 1
+        ans.append(''.join(line))
+    i = 1
+    middle = int(lines/2)
+    while len(ans) != lines:
+        ans.append(ans[middle - i])
+        i += 1
+    matrix = '\n'.join(ans)
+    return matrix
 
 #Question 98:
 #You are given a date. Your task is to find what the day is on that date.
